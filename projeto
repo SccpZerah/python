@@ -2,74 +2,84 @@ import tkinter
 from tkinter import *
 from tkinter import messagebox
 
-window= Tk ()
+window = Tk()
+
+photo_menu = PhotoImage(file="abc.png")
+lb_menu = Label(window, image=photo_menu)
 
 
-lb = Label(window,text="LOGIN SCREEN",font="verdama")
-lb.pack(side=TOP)
+window.iconbitmap(window, default="icon.ico")
+window.title("LOGIN")
+window.geometry("500x350+435+151")
+window.resizable(0, 0)
+window.configure(bg="skyBlue3")
 
-ent1 = Entry(window)
-ent1.place(x=90,y=100)
 
-ent = Entry(window,show="*")
-ent.place(x=90,y=140)
+###################################################################
 
-lblog= Label(window ,text="Login:",font="verdama")
-lblog.place(x=30,y=100)
+lb_informativo = Label(window,text="LOGIN SCREEN",font="verdama")
+lb_informativo.pack(side=TOP)
+
+
+######
+
+login = StringVar()
+
+lblogin= Label(window ,text="Login:",font="verdama")
+lblogin.place(x=30,y=100)
+
+ent_login = Entry(window, textvariable=login)
+ent_login.place(x=90,y=100)
+
+######
+
+senha = StringVar()
 
 lbsenha = Label(window,text="Senha:",font="verdama")
 lbsenha.place(x=30,y=140)
 
+ent_senha = Entry(window,show="*", textvariable=senha)
+ent_senha.place(x=90,y=140)
+
+############
+
+photo_menu = PhotoImage(file="abc.png")
+lb_menu = Label(window, image=photo_menu)
+
+###################################################################
+
 def entra():
-    log = str(ent1.get())
-    senha = str(ent.get())
 
-    if log == "1" and senha == "1":
+    if login.get() == "admin" and senha.get() == "admin":
 
-        messagebox.showinfo(title='!', message='acesso liberado')
+        lb_informativo.destroy()
+        lblogin.destroy()
+        ent_login.destroy()
+        lbsenha.destroy()
+        ent_senha.destroy()
+        bt_login.destroy()
 
-        janela = Tk()
-        bt = Button(janela, text="Posto ", bg="springGreen2", fg="black", height="1", width="20",
-                    font=["Times new roman"])
-        bt.place(x=100, y=150)
-        bt = Button(janela, text="BR 2", bg="deep sky blue", fg="black", height="1", width="20",
-                    font=["Times new roman"])
-        bt.place(x=100, y=210)
-        bt = Button(janela, text="BR Mania", bg="gold", fg="black", height="1", width="20", font=["Times new roman"])
-        bt.place(x=100, y=280)
+        messagebox.showinfo(title='Sucesso', message='acesso liberado')
 
-        image1 = tkinter.PhotoImage(file="C:\\Users\\lucas\\Desktop\\br\\men.png")
-        image1 = image1.subsample(1, 1)
+        lb_menu.place(x=90, y=2)
 
-        labelimag1 = Label(janela,image=image1)
-        labelimag1.place(x=90, y=1)
+        botao_posto = Button(window, text="Posto ", bg="springGreen2", fg="black", height="1", width="20",font=["Times new roman"])
+        botao_posto.place(x=100, y=150)
 
-        janela.wm_iconbitmap(r"C:\\Users\\lucas\\Desktop\\br\\icon.ico")
-        janela.title("MENU")
-        # comando para não dimesionar janela
-        janela.resizable(False, False)
-        janela.geometry("400x350+435+151")
-        janela.mainloop()
+        botao_posto2 = Button(window, text="BR 2", bg="deep sky blue", fg="black", height="1", width="20",font=["Times new roman"])
+        botao_posto2.place(x=100, y=210)
+
+        botao_posto3 = Button(window, text="BR Mania", bg="gold", fg="black", height="1", width="20", font=["Times new roman"])
+        botao_posto3.place(x=100, y=280)
 
     else:
 
-        messagebox.showinfo(title='!', message='acesso negado')
+        messagebox.showerror(title='Erro', message='acesso negado')
 
 
-bt = Button(window,text="ENTRAR",bg="skyBlue3",fg="white",height="1",width="20",command = entra )
-bt.place(x=50,y=180)
-
-
-
+bt_login = Button(window, text="ENTRAR", bg="skyBlue3", fg="white", height="1", width="20", command=entra)
+bt_login.place(x=50,y=180)
 
 
 
-
-
-
-
-
-window.title("LOGIN")
-window.geometry("500x350+435+151")
-window.configure(bg="skyBlue3")
 window.mainloop()
