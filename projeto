@@ -1,0 +1,75 @@
+import tkinter
+from tkinter import *
+from tkinter import messagebox
+
+window= Tk ()
+
+
+lb = Label(window,text="LOGIN SCREEN",font="verdama")
+lb.pack(side=TOP)
+
+ent1 = Entry(window)
+ent1.place(x=90,y=100)
+
+ent = Entry(window,show="*")
+ent.place(x=90,y=140)
+
+lblog= Label(window ,text="Login:",font="verdama")
+lblog.place(x=30,y=100)
+
+lbsenha = Label(window,text="Senha:",font="verdama")
+lbsenha.place(x=30,y=140)
+
+def entra():
+    log = str(ent1.get())
+    senha = str(ent.get())
+
+    if log == "1" and senha == "1":
+
+        messagebox.showinfo(title='!', message='acesso liberado')
+
+        janela = Tk()
+        bt = Button(janela, text="Posto ", bg="springGreen2", fg="black", height="1", width="20",
+                    font=["Times new roman"])
+        bt.place(x=100, y=150)
+        bt = Button(janela, text="BR 2", bg="deep sky blue", fg="black", height="1", width="20",
+                    font=["Times new roman"])
+        bt.place(x=100, y=210)
+        bt = Button(janela, text="BR Mania", bg="gold", fg="black", height="1", width="20", font=["Times new roman"])
+        bt.place(x=100, y=280)
+
+        image1 = tkinter.PhotoImage(file="C:\\Users\\lucas\\Desktop\\br\\men.png")
+        image1 = image1.subsample(1, 1)
+
+        labelimag1 = Label(janela,image=image1)
+        labelimag1.place(x=90, y=1)
+
+        janela.wm_iconbitmap(r"C:\\Users\\lucas\\Desktop\\br\\icon.ico")
+        janela.title("MENU")
+        # comando para não dimesionar janela
+        janela.resizable(False, False)
+        janela.geometry("400x350+435+151")
+        janela.mainloop()
+
+    else:
+
+        messagebox.showinfo(title='!', message='acesso negado')
+
+
+bt = Button(window,text="ENTRAR",bg="skyBlue3",fg="white",height="1",width="20",command = entra )
+bt.place(x=50,y=180)
+
+
+
+
+
+
+
+
+
+
+
+window.title("LOGIN")
+window.geometry("500x350+435+151")
+window.configure(bg="skyBlue3")
+window.mainloop()
